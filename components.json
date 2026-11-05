@@ -1,0 +1,236 @@
+{
+  "version": 1,
+  "components": [
+    {
+      "id": "project",
+      "directory": ".",
+      "parent": null,
+      "knowledge": [
+        "instructions",
+        "requirements",
+        "architecture",
+        "decisions",
+        "versions",
+        "node"
+      ]
+    },
+    {
+      "id": "src",
+      "directory": "src",
+      "parent": "project",
+      "knowledge": [
+        "architecture",
+        "api",
+        "decisions"
+      ],
+      "allowedDependencies": [
+        "domain",
+        "storage",
+        "google",
+        "service",
+        "demo",
+        "mcp",
+        "local"
+      ]
+    },
+    {
+      "id": "domain",
+      "directory": "src/domain",
+      "parent": "src",
+      "knowledge": [
+        "api",
+        "requirements"
+      ],
+      "allowedDependencies": []
+    },
+    {
+      "id": "storage",
+      "directory": "src/storage",
+      "parent": "src",
+      "knowledge": [
+        "database",
+        "requirements",
+        "decisions"
+      ],
+      "allowedDependencies": [
+        "domain"
+      ]
+    },
+    {
+      "id": "google",
+      "directory": "src/google",
+      "parent": "src",
+      "knowledge": [
+        "api",
+        "requirements",
+        "decisions"
+      ],
+      "allowedDependencies": [
+        "domain"
+      ]
+    },
+    {
+      "id": "service",
+      "directory": "src/service",
+      "parent": "src",
+      "knowledge": [
+        "requirements",
+        "api",
+        "database",
+        "decisions"
+      ],
+      "allowedDependencies": [
+        "domain",
+        "storage",
+        "google"
+      ]
+    },
+    {
+      "id": "demo",
+      "directory": "src/demo",
+      "parent": "src",
+      "knowledge": [
+        "requirements",
+        "database"
+      ],
+      "allowedDependencies": [
+        "domain",
+        "storage"
+      ]
+    },
+    {
+      "id": "mcp",
+      "directory": "src/mcp",
+      "parent": "src",
+      "knowledge": [
+        "api",
+        "requirements",
+        "decisions"
+      ],
+      "allowedDependencies": [
+        "domain",
+        "service"
+      ]
+    },
+    {
+      "id": "local",
+      "directory": "src/local",
+      "parent": "src",
+      "knowledge": [
+        "requirements",
+        "decisions"
+      ],
+      "allowedDependencies": [
+        "domain",
+        "storage",
+        "google",
+        "service",
+        "demo"
+      ]
+    },
+    {
+      "id": "tests",
+      "directory": "tests",
+      "parent": "project",
+      "knowledge": [
+        "requirements",
+        "api",
+        "validation"
+      ]
+    },
+    {
+      "id": "scripts",
+      "directory": "scripts",
+      "parent": "project",
+      "knowledge": [
+        "instructions",
+        "architecture",
+        "validation"
+      ]
+    },
+    {
+      "id": "skills",
+      "directory": "skills",
+      "parent": "project",
+      "knowledge": [
+        "requirements",
+        "decisions"
+      ]
+    },
+    {
+      "id": "docs",
+      "directory": "docs",
+      "parent": "project",
+      "knowledge": [
+        "requirements",
+        "architecture",
+        "decisions",
+        "validation",
+        "release"
+      ]
+    },
+    {
+      "id": "workflows",
+      "directory": ".github/workflows",
+      "parent": "project",
+      "knowledge": [
+        "validation",
+        "versions",
+        "node"
+      ]
+    },
+    {
+      "id": "containers",
+      "directory": "containers",
+      "parent": "project",
+      "knowledge": [
+        "architecture",
+        "release",
+        "versions",
+        "node"
+      ]
+    }
+  ],
+  "knowledge": {
+    "requirements": {
+      "path": "docs/PRD.md",
+      "purpose": "已確認業務目的、需求與 R01–R10 驗收；建議保持建議狀態"
+    },
+    "api": {
+      "path": "src/domain/index.ts",
+      "purpose": "Code-first：schemas 與其推導型別；不另手寫 OpenAPI"
+    },
+    "database": {
+      "path": "src/storage/index.ts",
+      "purpose": "Store 初始化 DDL；目前沒有獨立 migration 系統"
+    },
+    "architecture": {
+      "path": "docs/ARCHITECTURE.md",
+      "purpose": "架構限制、已實作與目標邊界；允許依賴以 components.json 為準"
+    },
+    "decisions": {
+      "path": "docs/DECISIONS.md",
+      "purpose": "跨元件理由、替代方案、狀態與 Open Questions"
+    },
+    "instructions": {
+      "path": "AGENTS.md",
+      "purpose": "Agent 工作規則，不承載完整業務知識"
+    },
+    "validation": {
+      "path": "docs/TEST_PLAN.md",
+      "purpose": "測試策略與已觀察證據；不等同需求權威"
+    },
+    "release": {
+      "path": "docs/RELEASE_PLAN.md",
+      "purpose": "放行案例與阻擋；需求引用 PRD，不重定義需求"
+    },
+    "versions": {
+      "path": "package.json",
+      "purpose": "套件版本與 npm 契約；Node patch 另以 .nvmrc 固定"
+    },
+    "node": {
+      "path": ".nvmrc",
+      "purpose": "標準 Node patch；同步容器仍由完整驗證確認"
+    }
+  }
+}

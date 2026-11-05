@@ -1,0 +1,17 @@
+name: Bug report
+description: Something did not work
+body:
+  - type: textarea
+    id: what
+    attributes:
+      label: What happened?
+      description: What you did, what you expected and what you saw. Do not paste tokens or real task content.
+    validations:
+      required: true
+  - type: input
+    id: platform
+    attributes:
+      label: Platform
+      placeholder: macOS 15, OrbStack, Claude Desktop
+    validations:
+      required: true

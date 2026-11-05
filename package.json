@@ -1,0 +1,48 @@
+{
+  "name": "google-tasks-mcp",
+  "version": "0.1.0-dev",
+  "private": true,
+  "license": "MIT",
+  "type": "module",
+  "engines": {
+    "node": ">=24.22.1 <25",
+    "npm": "11.19.1"
+  },
+  "scripts": {
+    "build": "tsc",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run",
+    "start": "node dist/main.js",
+    "demo": "node dist/cli.js",
+    "check": "npm run docs:check && npm run docs:test && npm run typecheck && npm test && npm run build",
+    "google:connect": "node dist/connect.js",
+    "google:stdio": "node dist/google-stdio.js",
+    "inspector": "mcp-inspector",
+    "docs:check": "node scripts/check-components.mjs && npm run context:check",
+    "docs:stamp": "node scripts/check-components.mjs --stamp",
+    "docs:test": "node --test scripts/check-components.test.mjs scripts/component-context.test.mjs scripts/check-context.test.mjs",
+    "context": "node scripts/component-context.mjs",
+    "test:synthetic": "node scripts/check-demo-stdio.mjs && node scripts/check-demo-stdio.mjs --modern && node scripts/check-recovery.mjs && node scripts/check-storage.mjs",
+    "test:launchers": "node --test scripts/private-stack.test.mjs scripts/start-private-tunnel.test.mjs scripts/setup.test.mjs",
+    "test:container": "node scripts/check-container.mjs",
+    "skill:package": "mkdir -p dist && cd skills && rm -f ../dist/tasks-calendar-planner.zip && zip -qr ../dist/tasks-calendar-planner.zip tasks-calendar-planner",
+    "context:check": "node scripts/check-context.mjs",
+    "context:generate": "node scripts/check-context.mjs --write"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/node": "2.1.2",
+    "@modelcontextprotocol/server": "2.4.0",
+    "zod": "4.6.7",
+    "better-sqlite3": "13.0.3"
+  },
+  "devDependencies": {
+    "@modelcontextprotocol/client": "2.4.0",
+    "@modelcontextprotocol/inspector": "2.12.0",
+    "@types/node": "24.19.2",
+    "msw": "2.15.0",
+    "typescript": "5.9.3",
+    "vitest": "4.1.12",
+    "@types/better-sqlite3": "9.6.0"
+  },
+  "packageManager": "npm@11.19.1"
+}

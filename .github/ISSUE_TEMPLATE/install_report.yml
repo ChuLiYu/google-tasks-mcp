@@ -1,0 +1,22 @@
+name: Install report
+description: Tell us how setup went, good or bad
+labels: [install]
+body:
+  - type: input
+    id: platform
+    attributes:
+      label: Platform
+      placeholder: Ubuntu 24.04, Docker 27, Claude Code
+    validations:
+      required: true
+  - type: dropdown
+    id: result
+    attributes:
+      label: Did it work?
+      options: ["Yes", "Yes, with trouble", "No"]
+    validations:
+      required: true
+  - type: textarea
+    id: notes
+    attributes:
+      label: Where did you get stuck?

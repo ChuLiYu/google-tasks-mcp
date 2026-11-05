@@ -1,0 +1,10 @@
+name: Idea
+description: Suggest something
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: What are you trying to do?
+      description: Start with the problem, then your idea.
+    validations:
+      required: true

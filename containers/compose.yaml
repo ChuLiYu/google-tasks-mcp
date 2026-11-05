@@ -1,0 +1,32 @@
+name: google-tasks-demo
+services:
+  demo:
+    image: google-tasks-mcp:local
+    build:
+      context: ..
+      dockerfile: containers/Dockerfile
+    # OrbStack 將 host network 的 localhost 接到 Mac；程式仍只綁 127.0.0.1。
+    network_mode: host
+    environment:
+      PORT: "3001"
+      TASKS_DATA_DIR: /data
+    volumes:
+      - demo-data:/data
+    read_only: true
+    tmpfs:
+      - /tmp:size=16m,mode=1777
+    cap_drop:
+      - ALL
+    security_opt:
+      - no-new-privileges:true
+    init: true
+    restart: "no"
+    stop_grace_period: 20s
+    healthcheck:
+      test: ["CMD", "node", "-e", "fetch('http://127.0.0.1:'+process.env.PORT+'/health').then(r=>{if(!r.ok)process.exit(1)}).catch(()=>process.exit(1))"]
+      interval: 10s
+      timeout: 3s
+      start_period: 10s
+      retries: 3
+volumes:
+  demo-data:

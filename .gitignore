@@ -1,0 +1,22 @@
+node_modules/
+dist/
+.data/
+.host/
+.setup-build.log
+.env
+.env.*
+!.env.example
+*.sqlite*
+coverage/
+*.log
+
+# Local agent settings and credentials must never be published.
+.agents/
+.codex/
+.aws/
+client_secret*.json
+credentials*.json
+token*.json
+*.pem
+*.key
+.DS_Store

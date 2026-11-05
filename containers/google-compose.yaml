@@ -1,0 +1,30 @@
+name: google-tasks-private
+services:
+  tasks:
+    image: google-tasks-mcp:private-http
+    build:
+      context: ..
+      dockerfile: containers/Dockerfile
+    network_mode: host
+    environment:
+      TASKS_DATA_DIR: /data
+    # Writes stay off unless the owner enabled them with setup.sh (D046).
+    env_file:
+      - path: ../.host/runtime.env
+        required: false
+    volumes:
+      - ../.data:/data
+    command: ["node", "dist/google-http.js"]
+    read_only: true
+    tmpfs:
+      - /tmp:size=16m,mode=1777
+    cap_drop: [ALL]
+    security_opt: ["no-new-privileges:true"]
+    init: true
+    restart: "no"
+    stop_grace_period: 20s
+    healthcheck:
+      test: ["CMD", "node", "-e", "fetch('http://127.0.0.1:3002/health').then(r=>{if(!r.ok)process.exit(1)}).catch(()=>process.exit(1))"]
+      interval: 5s
+      timeout: 3s
+      retries: 5
