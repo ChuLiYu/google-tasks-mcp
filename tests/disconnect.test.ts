@@ -24,7 +24,7 @@ afterEach(()=>{rmSync(dir,{recursive:true,force:true});});
 describe('disconnect',()=>{
   it('revokes at Google, removes credentials and keeps the ledger',async()=>{
     seed();
-    expect(await disconnect(dir,ok as typeof fetch)).toEqual({revoked:true,wasConnected:true});
+    expect(await disconnect(dir,ok as typeof fetch)).toEqual({revoked:true,wasConnected:true,removed:true});
     expect(sent).toEqual(['token=synthetic-refresh']);
     expect(existsSync(join(dir,'vault.key'))).toBe(false);
     expect(remaining()).toEqual({secrets:['snapshot:keep'],operations:1});
@@ -34,16 +34,31 @@ describe('disconnect',()=>{
   it('still removes credentials and reports it when Google cannot confirm',async()=>{
     for(const fetcher of [async()=>new Response(null,{status:400}),async()=>{throw new Error('offline');}]) {
       rmSync(dir,{recursive:true,force:true});dir=mkdtempSync(join(tmpdir(),'tasks-disconnect-'));seed();
-      expect(await disconnect(dir,fetcher as typeof fetch)).toEqual({revoked:false,wasConnected:true});
+      expect(await disconnect(dir,fetcher as typeof fetch)).toEqual({revoked:false,wasConnected:true,removed:true});
       expect(existsSync(join(dir,'vault.key'))).toBe(false);
       expect(remaining().secrets).toEqual(['snapshot:keep']);
     }
   });
   it('does nothing when never connected, and removes an unreadable connection',async()=>{
-    expect(await disconnect(dir,ok as typeof fetch)).toEqual({revoked:false,wasConnected:false});
+    expect(await disconnect(dir,ok as typeof fetch)).toEqual({revoked:false,wasConnected:false,removed:true});
     seed();writeFileSync(join(dir,'vault.key'),randomBytes(32));
-    expect(await disconnect(dir,ok as typeof fetch)).toEqual({revoked:false,wasConnected:true});
+    expect(await disconnect(dir,ok as typeof fetch)).toEqual({revoked:false,wasConnected:true,removed:true});
     expect(sent).toEqual([]);
     expect(remaining().secrets).toEqual(['snapshot:keep']);
   });
+  it('reports a stored connection whose key is missing, so the user revokes it at Google',async()=>{
+    seed();rmSync(join(dir,'vault.key'));
+    expect(await disconnect(dir,ok as typeof fetch)).toEqual({revoked:false,wasConnected:true,removed:true});
+    expect(remaining().secrets).toEqual(['snapshot:keep']);
+  });
+  it('revokes nothing while another writer holds the database',async()=>{
+    seed();
+    const other=new Store(join(dir,'google.sqlite'));other.db.pragma('busy_timeout=0');other.db.exec('BEGIN IMMEDIATE');
+    try {
+      const store=new Store(join(dir,'google.sqlite'));store.close();
+      expect(await disconnect(dir,ok as typeof fetch)).toEqual({revoked:false,wasConnected:true,removed:false});
+      expect(sent).toEqual([]);
+    } finally {other.db.exec('ROLLBACK');other.close();}
+    expect(existsSync(join(dir,'vault.key'))).toBe(true);
+  },15_000);
 });

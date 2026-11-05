@@ -56,6 +56,26 @@ afterEach(async()=>{
   store.close();
 });
 describe('local approval desk for real writes',()=>{
+  it('a connector grant always needs the owner code, never the unlock cookie',async()=>{
+    // Unlock this browser on an approval first, to hold a valid cookie.
+    const ref=await propose();
+    const first=await call('GET',`/approve/${ref}`);
+    const unlocked=await call('POST',`/approve/${ref}`,{headers:browser(),body:`csrf=${encodeURIComponent(hidden(first.body,'csrf'))}&digest=${encodeURIComponent(hidden(first.body,'digest'))}&decision=reject&owner_code=${OWNER_CODE}`});
+    const cookie=String((unlocked.headers['set-cookie'] as string[])[0]);
+    expect(cookie).toContain('Path=/approve/');
+    const decided:boolean[]=[];
+    await new Promise<void>(resolve=>{desk.server.close(()=>{resolve();});desk.server.closeAllConnections();});
+    desk=approvalDesk(service,port,{pending:()=>({redirectUri:'https://claude.ai/api/mcp/auth_callback',writes:true}),decide:(_id,allow)=>{decided.push(allow);return 'https://claude.ai/api/mcp/auth_callback?code=x';}},OWNER_CODE);
+    await new Promise<void>(resolve=>desk.server.listen(port,'127.0.0.1',resolve));
+    const id='A'.repeat(43),jar={Cookie:cookie.split(';')[0] ?? ''};
+    const page=await call('GET',`/oauth/${id}`,{headers:jar});
+    expect(page.body).toContain('owner_code');
+    const body=`csrf=${encodeURIComponent(hidden(page.body,'csrf'))}&decision=allow`;
+    expect((await call('POST',`/oauth/${id}`,{headers:{...browser(),...jar},body:`${body}&owner_code=`})).status).toBe(403);
+    expect(decided).toEqual([]);
+    expect((await call('POST',`/oauth/${id}`,{headers:{...browser(),...jar},body:`${body}&owner_code=${OWNER_CODE}`})).status).toBe(303);
+    expect(decided).toEqual([true]);
+  });
   it('a forged Origin without the owner code cannot decide, and nothing is written',async()=>{
     const ref=await propose();
     const form=(await call('GET',`/approve/${ref}`)).body;

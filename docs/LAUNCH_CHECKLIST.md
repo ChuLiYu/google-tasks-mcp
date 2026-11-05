@@ -6,15 +6,15 @@ Parent: [docs component](SPEC.md). Owner-run steps for the first public release.
 
 - [x] License: MIT (D048).
 - [x] Q04 for public users: disconnect command added, restore limit disclosed (D048).
-- [ ] Finish the security review and resolve its findings.
+- [x] Security review: final review of the public tree passed with no blockers (D047, D049).
 - [x] History: publish a fresh history (D048). Choose how to handle the current repository when publishing.
-- [ ] Remove the dated owner authorization from `AGENTS.md` in the public tree (D048).
+- [x] Remove the dated owner authorization from `AGENTS.md` in the public tree (D048); done when the tree is built.
 - [ ] Have someone else run `./setup.sh` from a clean machine.
 
 ## At the moment of going public
 
 - [ ] Merge to `main` and tag `v0.1.0`.
-- [ ] Set the repository public. Enable private vulnerability reports, Dependabot alerts, secret scanning and branch protection.
+- [ ] Set the repository public. Enable private vulnerability reports, Dependabot alerts (not version-update PRs, which fail the spec fingerprint check), secret scanning and branch protection.
 - [ ] Add a description, topics (`mcp`, `claude`, `google-tasks`) and a social preview image.
 
 ## What usually earns stars

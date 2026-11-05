@@ -207,12 +207,22 @@ PRD R10 的合成備註案例直接驗證 get／list／search 保留指令式文
 - 決策／原因／取捨：Make the operation key migration idempotent, because a logical restore loses user_version and double hashing would defeat replay protection; synthetic recovery check now uses key digests.
 - 驗證：tests/storage-key-digest.test.ts; npm run test:synthetic in the build image; full check.
 
+### 2026-11-05
+
+- 決策／原因／取捨：Fix final review findings (D049): consent always needs the owner code, cookie scoped to approvals, truthful disconnect reporting with lock before revoke and a timeout, replay protection documented as per connection, refuse unmountable paths, drop Dependabot version PRs.
+- 驗證：Full image check, test:synthetic, launcher tests; new disconnect cases. Not re-reviewed.
+
+### 2026-11-05
+
+- 決策／原因／取捨：Prove a connector grant needs the owner code even with a valid unlock cookie (D049).
+- 驗證：Full image check.
+
 <!-- component-snapshot
 {
-  "tests/approval-desk.test.ts": "5eb896d0671b70b43c277469adfc68172ac4fbad048bea1b3b03280402872d82",
+  "tests/approval-desk.test.ts": "66e3a25e225992f7532dc933a8650f83eee0e4f6942f7037ed617f7fa5822dae",
   "tests/crud-test.test.ts": "8109c7dec1cf5d632d344ee3fcbca9d2d71bf5061c71e9bc37d9a44a827406ad",
   "tests/direct-writes.test.ts": "4bd48723e70c69db15f2c4dededbe3decce3e9381d5e2d11bb6d69c0461ff5a0",
-  "tests/disconnect.test.ts": "8715419e7cad709dd003313ad566294651b44c62e861c64439a2093ebd7591ac",
+  "tests/disconnect.test.ts": "876f47f16382b3c538f7c5e1b68dcd3921381cb81b8a6b1ff405cea91b208e46",
   "tests/domain.test.ts": "5a38e7c00b87f2f4f77c0594bc31232c46ddf7978d68af47a0c4e66ff88df031",
   "tests/google-local.test.ts": "621b7e37cfd0299b80a89a1dea8ae266d3cc6580800832aea311216a2aab17c2",
   "tests/google.test.ts": "29aa639bee7c137d61da5e7c82e1186765a38f41bbc19214a73afbff494488ef",
@@ -224,6 +234,6 @@ PRD R10 的合成備註案例直接驗證 get／list／search 保留指令式文
   "tests/skill.test.ts": "dbec148aaf7ea212183a464fe5995f43742a4e5b9df14defd3a890d6b83f67f9",
   "tests/stdio-bridge.test.ts": "8563c5b4a0cfad4204bbbf016837478d7a1e72ac2e396f16007de6d293d8f2a9",
   "tests/storage-key-digest.test.ts": "48e278d9534f9f5964e10f1cba8c2ae8175708454f5f34c254fe75a47608345f",
-  "tests/SPEC.md": "d93a26a1270d1ca0cc329d4f6873fdd9b713050c09a44029e092b9917f8d1507"
+  "tests/SPEC.md": "a0c39d7604a2a372fc712d4c6bead40079c63ac1bbc77a263489ffff572b6b87"
 }
 -->

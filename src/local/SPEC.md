@@ -96,12 +96,17 @@ The separate conditional-update batch in `authorizedConditionalUpdateTest` is pr
 - 決策／原因／取捨：Fix the re-review findings: remove remaining real fixture names and dates, require an explicit write mode, keep strict mode on rerun, digest operation keys with migration, expire proposals without relying on writes, clear pending content at disconnect, correct failed-disconnect messages, server-side cookie expiry, and documentation errors.
 - 驗證：Launcher tests and full image check with new cases; list and get etags matched on one real fixture. Not re-reviewed after this change.
 
+### 2026-11-05
+
+- 決策／原因／取捨：Fix final review findings (D049): consent always needs the owner code, cookie scoped to approvals, truthful disconnect reporting with lock before revoke and a timeout, replay protection documented as per connection, refuse unmountable paths, drop Dependabot version PRs.
+- 驗證：Full image check, test:synthetic, launcher tests; new disconnect cases. Not re-reviewed.
+
 <!-- component-snapshot
 {
   "src/local/crud-test.ts": "c6183378b4b0a2f7caee0037bf038a10529c41c1555d0244a2695394fe850216",
-  "src/local/disconnect.ts": "20b2ada223a704755112922811adc4629074ddd3b46b3f920ce85569b1321e8e",
+  "src/local/disconnect.ts": "674ddb9eb8dda64dd44b1ecdd2ea56a086cd3f61db13874ff39a66b917facb77",
   "src/local/google-local.ts": "34ce7bbf4064266aac5f287e7b3fc4259ea88b338efb32995e9142120c51272c",
   "src/local/runtime.ts": "67c8b04432efbd2dd57801a756d059ff0de9984d27617e0c533ddab50738d565",
-  "src/local/SPEC.md": "96842cbd0b550858928ca957abf9161057356a97b4fadaf2948aea65ad5c1208"
+  "src/local/SPEC.md": "348fe16142723fe3bfc34d9ad753bf2dce6beef8e2e80668f97972f9e5a8d6e7"
 }
 -->

@@ -68,9 +68,14 @@ CI 固定 npm 11.19.1、使用 .nvmrc 的 Node；15 分鐘 timeout、同分支�
 - 決策／原因／取捨：Fix findings from the pre-public security review (D047): owner code on desk decisions, required expectedEtag, fail-closed approval mode, mode-bound and revocable connector tokens, no payload at rest in direct mode, pinned CI actions, sanitized identifying details.
 - 驗證：Full image check and launcher tests; new refusal cases for owner code and stale edits. Not re-reviewed yet; no real Web consent run after this change.
 
+### 2026-11-05
+
+- 決策／原因／取捨：Fix final review findings (D049): consent always needs the owner code, cookie scoped to approvals, truthful disconnect reporting with lock before revoke and a timeout, replay protection documented as per connection, refuse unmountable paths, drop Dependabot version PRs.
+- 驗證：Full image check, test:synthetic, launcher tests; new disconnect cases. Not re-reviewed.
+
 <!-- component-snapshot
 {
   ".github/workflows/ci.yml": "6e5e1a13456d299047c18faf818689cd4003f1cdec3d3f9090bbf12d79fa0ada",
-  ".github/workflows/SPEC.md": "29969b7af4dda2addb468c8abfd90fd62372103f5066d06f387f060fd77e149d"
+  ".github/workflows/SPEC.md": "317fbc355f3e0c58f91e630fbd44803597501897c39b6afb4ee03ac574936522"
 }
 -->

@@ -44,6 +44,8 @@ if [ "$#" -eq 1 ]; then
   exit 0
 fi
 
+case "$ROOT" in *,*|*'"'*) fail 'move this folder to a path without commas or double quotes, which Docker cannot mount.' ;; esac
+
 say 'Google Tasks MCP setup. It takes about 10 minutes, most of it in the Google Cloud console.'
 say 'Run it from your own terminal app, because it may need to quit and reopen Claude.'
 

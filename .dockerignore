@@ -32,7 +32,6 @@
 !skills/**
 !.github/
 !.github/pull_request_template.md
-!.github/dependabot.yml
 !.github/ISSUE_TEMPLATE/
 !.github/ISSUE_TEMPLATE/**
 !.github/workflows/
