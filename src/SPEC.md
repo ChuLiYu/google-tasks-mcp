@@ -141,18 +141,23 @@ HTTP demo 僅綁定 loopback，檢查 Host／Origin。Google 入口不可把本�
 - 決策／原因／取捨：Fix the re-review findings: remove remaining real fixture names and dates, require an explicit write mode, keep strict mode on rerun, digest operation keys with migration, expire proposals without relying on writes, clear pending content at disconnect, correct failed-disconnect messages, server-side cookie expiry, and documentation errors.
 - 驗證：Launcher tests and full image check with new cases; list and get etags matched on one real fixture. Not re-reviewed after this change.
 
+### 2026-11-05
+
+- 決策／原因／取捨：Fix final review findings (D049): consent always needs the owner code, cookie scoped to approvals, truthful disconnect reporting with lock before revoke and a timeout, replay protection documented as per connection, refuse unmountable paths, drop Dependabot version PRs.
+- 驗證：Full image check, test:synthetic, launcher tests; new disconnect cases. Not re-reviewed.
+
 <!-- component-snapshot
 {
   "src/claude-desktop-stdio.ts": "83caeb724f33787ae5ea94485fabdbe8b80f6011d1d32e8e89e33110a29c39c9",
   "src/cli.ts": "80ec6fe21b76b3e0b19a1b3593d2ec536171e457fb8408f54d097668b9a632ba",
   "src/connect.ts": "19f8d2ab70ea3e17beb3860cece6df213a4ca371a47e1293c3dc787341ba1f86",
   "src/demo-stdio.ts": "dab69186aa93bdc2c1476cbe94bea55e9864d5d488076ef66dd244ebaf9d762a",
-  "src/disconnect.ts": "2da92cd1375fca45632503c5b8e355a2eb1f62dc4246c4ed4e19fdff970ed1cb",
+  "src/disconnect.ts": "987f0ba18bf7167f9f7004c70cb5e7bb69218be0fc1cb955c6ad0ead8804f6e6",
   "src/google-conditional-test.ts": "6af6db7c87fa0ffe760536f5043049eff7e3acc715300b21225b309d9aebc30f",
   "src/google-crud-test.ts": "5b37a126533221fe551608d8a089426d6dd2ff5de32514e5d7b99907be1ae26c",
   "src/google-http.ts": "ce261797bde3564737aa06aeaff67d899dc37e9ac15e28507bc8021536e7d0ae",
   "src/google-stdio.ts": "07f84ba45e03cb4e9cb179b186b4d400da495273141183e9b5af45a13ee906c0",
   "src/main.ts": "d3400c36a0e9796ecb76d3d58b8f6d58cd43b29f5b772aeda251ae0412c711f2",
-  "src/SPEC.md": "8dd98517bfc8625cf7613559ce522a67999d536d7936a503142b440731a5a60b"
+  "src/SPEC.md": "f67caa89a27390c30bd30368e15f7358c7b0705dacaac519a8add555bbced25e"
 }
 -->

@@ -227,8 +227,18 @@ An independent review of `9deb143` returned 5 blockers. Fixed here, on the autho
 
 The owner answered the open release questions: MIT ("MIT"), a disconnect command first ("先做斷開指令"), a fresh Git history ("全新歷史"), and removing the dated authorization from the public `AGENTS.md` ("公開版移除").
 
-- **Q04 for public users:** `./setup.sh disconnect` revokes at Google, removes local credentials and keeps the ledger, cleared of any undecided proposal content. Credentials are removed even when Google cannot confirm, and the command then says so. Detection of a restored older ledger is not built; README warns against restoring `.data`. This replaces the D045 condition for self-install; Q04 is not closed for any hosted service.
+- **Q04 for public users:** `./setup.sh disconnect` revokes at Google, removes local credentials and keeps the ledger, cleared of any undecided proposal content. The ledger refuses a reused key only within one connection; after reconnecting, a retried key counts as new, so an uncertain write must be checked in Google Tasks before retrying. Credentials are removed even when Google cannot confirm, and the command then says so. Detection of a restored older ledger is not built; README warns against restoring `.data`. This replaces the D045 condition for self-install; Q04 is not closed for any hosted service.
 - **Q07:** MIT closes the license part. Security contact is GitHub private reports. A privacy policy is not needed while there is no hosted service.
 - **Trade-off of a fresh history:** decision history stays out of the public Git log; the documents themselves remain. GitHub can keep old commits reachable by SHA in a force-pushed repository, so a new repository is cleaner than rewriting this one. Copies from the earlier public period cannot be retracted.
 - **Not done yet:** creating the public tree, and setting anything public. Both wait for the owner's go-ahead at publication.
+
+## D049 — Final pre-public review (2026-11-05)
+
+A fresh review of the planned public tree `4210206` passed with no blockers and four findings to fix, done here:
+
+- **A cookie never authorizes a connector grant.** Browsers send cookies to every port on `127.0.0.1`, so a stolen unlock cookie reached a Claude Web token without the owner code. Consent now always needs the code; the cookie is scoped to `/approve/`.
+- **Disconnect reports truthfully.** A stored connection with a missing key is reported as not revoked. The database lock is taken before revoking, so a revoked grant is not left with its local copy, and the request times out after 10 seconds.
+- **Replay protection is per connection.** Reconnecting gives a new connection identity by design (D041), so a retried key then counts as new. Documents now say so instead of claiming global protection.
+- **Also:** paths with commas or double quotes are refused up front, and Dependabot version PRs are dropped because they always fail the fingerprint check; alerts stay on.
+- **Accepted:** an old ledger's 64-hex raw key is not migrated, and owner quotes and private operating notes stay in the documents. The fresh repository keeps old SHAs out.
 

@@ -40,7 +40,6 @@ The owner-approved optional local `.env` holds only the readonly Tunnel runtime 
 - [CONTRIBUTING.md](CONTRIBUTING.md)
 - [SECURITY.md](SECURITY.md)
 - [CODE_OF_CONDUCT.md](CODE_OF_CONDUCT.md)
-- [.github/dependabot.yml](.github/dependabot.yml)
 - [.github/pull_request_template.md](.github/pull_request_template.md)
 - [.github/ISSUE_TEMPLATE/bug_report.yml](.github/ISSUE_TEMPLATE/bug_report.yml)
 - [.github/ISSUE_TEMPLATE/install_report.yml](.github/ISSUE_TEMPLATE/install_report.yml)
@@ -232,17 +231,21 @@ The owner-approved optional local `.env` holds only the readonly Tunnel runtime 
 
 ### 2026-11-05
 
+- 決策／原因／取捨：Fix final review findings (D049): consent always needs the owner code, cookie scoped to approvals, truthful disconnect reporting with lock before revoke and a timeout, replay protection documented as per connection, refuse unmountable paths, drop Dependabot version PRs.
+- 驗證：Full image check, test:synthetic, launcher tests; new disconnect cases. Not re-reviewed.
+
+### 2026-11-05
+
 - 決策／原因／取捨：Remove the dated owner authorization from the public AGENTS.md (D048).
 - 驗證：Full image check on this tree.
 
 <!-- component-snapshot
 {
-  ".dockerignore": "7dea5a0c1797efc24cf53c4b6352cb7d9c10d472c6d1db0843ba3b15250c9f93",
+  ".dockerignore": "f6506e7ecab6636760e7da81b35d1e5b7a644c4dfd632bb73bafce7f078bda62",
   ".github/ISSUE_TEMPLATE/bug_report.yml": "97b95341e6cab75da75b013864a62b5ba4a4e8ef30d71ce5614ba4370fb3895c",
   ".github/ISSUE_TEMPLATE/config.yml": "5d391499ab14b8965dc246918cd830923e400a7793c89b054eff0298e4a9c6ee",
   ".github/ISSUE_TEMPLATE/feature_request.yml": "ed3c2348718aa0be38b01096a04bfa86abd237cf8a8a627a43ebe6e51f192e0f",
   ".github/ISSUE_TEMPLATE/install_report.yml": "de113b1014d023815b510d4ff5e88efea367c8e4ad6ac53f46a53c9e07b64968",
-  ".github/dependabot.yml": "e6714156ceca913ca03c2235c80c76c735ebc9312279ad69ffb86457efd7670c",
   ".github/pull_request_template.md": "1046e7a7143d9e9c9547bd6cbfb481c7a61ae0eb634a329501a67a87520b68d0",
   ".gitignore": "1f698a2bf260c3b90923a4e123754505338f105da87d13e9a34ac552509eef59",
   ".npmrc": "be85cc462e740587626bbcbb1c3ed1c40b26e62ec072e8cbd2768f23915c28e6",
@@ -251,16 +254,16 @@ The owner-approved optional local `.env` holds only the readonly Tunnel runtime 
   "CODE_OF_CONDUCT.md": "8629ac2fb2c9862f83d5332378392c6e2f62b2295daebeb3e4f6883227b747f2",
   "CONTRIBUTING.md": "47f274c27d0e925cb89548443ad088c5ac8269da1bfee5f4f0ca43af754124f0",
   "LICENSE": "68719bdff787d37f6c8ca053b43304d1f6c4f8b893f9bfa8fff66c4357827a79",
-  "README.md": "7c953579354ed3f5cb13f7a8fe9dd29617658cf1416a736a9b8ca084241c18f4",
-  "README.zh-TW.md": "0e441d086b8a21621fadd6288f10c2be383e7f1e376ff4ec3ac71acff258c22b",
+  "README.md": "7905f4c8efafb750f9ce57ddc8ca1d1af487654f85017889017a16e27d20a205",
+  "README.zh-TW.md": "fd822bc1dc0cfcd63f4e6ec6f8aa30292550269448efb33bdefb447efa34b4d7",
   "SECURITY.md": "c30c99054d3e51d1a0fd901d627b11e90d1bfc8897bf6654634e6f8d3d6ff830",
   "Start Google Tasks.command": "34c1d575504355b018cb7ec9973cfd307fa4ccdee1df4ebf5463c5a319265167",
   "components.json": "e96d0fa66d84f2a57d9e825f8da8160c7d8cd0cde10310e67a427a83f1ff9872",
   "package-lock.json": "48f35e9b55601a5e2f78d716e83c8a9772edc944a50e4563428f4182b7cffd14",
   "package.json": "3d86b84d5628753abb7d15daf6a3d2c590087773a7832a55ae1f2abfd468b257",
-  "setup.sh": "300a5d160abd469451e519bdcef2758c15a9487b20a5a986d01352d8305cfbfb",
+  "setup.sh": "509505cc516a13d26f2ad06eeb89f9e6b7f58753b57b390d1c3649bc4cca0f11",
   "tsconfig.json": "4ef2657319d7990ea442439c820b9a315a7741eeb57701bdf1b88d7ac5fb8296",
   "vitest.config.ts": "430ca3bbd088e694cc4564030645100fe55f65f86dcc121dce06842201b3b5c0",
-  "SPEC.md": "9e88fbbe237b273dc0269ae2a33b22c7cf2badfc42b8370c04aece3fb8dcbf22"
+  "SPEC.md": "fb2e9108574afa01a38d452862a55978c97655c831b336d584cc107f25894eef"
 }
 -->

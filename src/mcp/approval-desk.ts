@@ -37,12 +37,13 @@ export function approvalDesk(service:TaskService,port:number,consent:OwnerConsen
     const issued=Number(value[1]);
     return Date.now()-issued<UNLOCK_TTL && same(part.trim(),`desk_unlock=${unlockValue(issued)}`);
   });
-  const codeField=(req:IncomingMessage)=>unlocked(req) ? '' : '<p><label>Owner code (run <code>cat .data/desk.key</code> in the project folder):<br><input type="password" name="owner_code" autocomplete="off" required></label></p>';
+  const codeField=(req:IncomingMessage,allowCookie=true)=>allowCookie && unlocked(req) ? '' : '<p><label>Owner code (run <code>cat .data/desk.key</code> in the project folder):<br><input type="password" name="owner_code" autocomplete="off" required></label></p>';
   // A correct code unlocks this browser for 8 hours, so strict mode does not ask on every write.
-  const authorized=(req:IncomingMessage,res:ServerResponse,form:URLSearchParams)=>{
-    if(unlocked(req)) return true;
+  // Browsers send cookies to every port on 127.0.0.1, so a cookie never authorizes a connector grant.
+  const authorized=(req:IncomingMessage,res:ServerResponse,form:URLSearchParams,allowCookie=true)=>{
+    if(allowCookie && unlocked(req)) return true;
     if(!same(form.get('owner_code') ?? '',ownerCode)) return false;
-    res.setHeader('Set-Cookie',`desk_unlock=${unlockValue()}; HttpOnly; SameSite=Strict; Path=/; Max-Age=28800`);
+    res.setHeader('Set-Cookie',`desk_unlock=${unlockValue()}; HttpOnly; SameSite=Strict; Path=/approve/; Max-Age=28800`);
     return true;
   };
   const refused=(res:ServerResponse)=>{send(res,403,page('Decision not applied','<p>The owner code was wrong, so nothing was approved or rejected and nothing was written. Go back and try again.</p>'));};
@@ -68,10 +69,10 @@ export function approvalDesk(service:TaskService,port:number,consent:OwnerConsen
       const pending=consent?.pending(id);
       if(!pending) {send(res,404,page('Connection request expired','<p>Go back to Claude and connect again.</p>'));return;}
       const target=new URL(pending.redirectUri);
-      if(req.method==='GET') {send(res,200,page('Allow Claude to connect?',`<p class="note">Allow only if you just pressed connect in Claude yourself. <b>${escape(target.hostname)}</b> will be able to read the Tasks in this Google account${pending.writes ? ' and create, update and complete tasks (not delete)' : ''}. You will not need this page again. To cut access, delete <code>.data/public-url</code> and restart the service.</p><form method="post" action="/oauth/${escape(id)}">${codeField(req)}<input type="hidden" name="csrf" value="${csrf(`oauth:${id}`)}"><button name="decision" value="allow">Allow</button><button name="decision" value="deny">Deny</button></form>`),`'self' ${target.origin}`);return;}
+      if(req.method==='GET') {send(res,200,page('Allow Claude to connect?',`<p class="note">Allow only if you just pressed connect in Claude yourself. <b>${escape(target.hostname)}</b> will be able to read the Tasks in this Google account${pending.writes ? ' and create, update and complete tasks (not delete)' : ''}. You will not need this page again. To cut access, delete <code>.data/public-url</code> and restart the service.</p><form method="post" action="/oauth/${escape(id)}">${codeField(req,false)}<input type="hidden" name="csrf" value="${csrf(`oauth:${id}`)}"><button name="decision" value="allow">Allow</button><button name="decision" value="deny">Deny</button></form>`),`'self' ${target.origin}`);return;}
       const form=await readForm(req);
       if(!same(form.get('csrf') ?? '',csrf(`oauth:${id}`))) {send(res,403,page('Decision not applied','<p>This page expired. Go back to Claude and connect again.</p>'));return;}
-      if(!authorized(req,res,form)) {refused(res);return;}
+      if(!authorized(req,res,form,false)) {refused(res);return;}
       const location=consent?.decide(id,form.get('decision')==='allow');
       if(!location) {send(res,404,page('Connection request expired','<p>Go back to Claude and connect again.</p>'));return;}
       res.writeHead(303,{Location:location,'Cache-Control':'no-store','Referrer-Policy':'no-referrer'}).end();return;

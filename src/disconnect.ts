@@ -1,9 +1,12 @@
 import { disconnect } from './local/disconnect.js';
 import { dataPath } from './local/runtime.js';
 
-// Prints outcomes only; a token never reaches the output.
+// Prints outcomes only; a token never reaches the output. Exit 3: removed here, not confirmed by Google.
 const result=await disconnect(dataPath);
-if(!result.wasConnected) console.error('No Google connection was stored.');
+if(!result.removed) {
+  console.error('Local credentials could not be removed. Stop the service and try again.');
+  process.exitCode=1;
+} else if(!result.wasConnected) console.error('No Google connection was stored.');
 else if(result.revoked) console.error('Google access revoked and local credentials removed.');
 else {
   console.error('Local credentials removed, but Google did not confirm revocation.');

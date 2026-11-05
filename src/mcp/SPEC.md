@@ -128,14 +128,19 @@ Real writes default to `directWrites` (D041). With `localApproval` tools only pr
 - 決策／原因／取捨：Fix the re-review findings: remove remaining real fixture names and dates, require an explicit write mode, keep strict mode on rerun, digest operation keys with migration, expire proposals without relying on writes, clear pending content at disconnect, correct failed-disconnect messages, server-side cookie expiry, and documentation errors.
 - 驗證：Launcher tests and full image check with new cases; list and get etags matched on one real fixture. Not re-reviewed after this change.
 
+### 2026-11-05
+
+- 決策／原因／取捨：Fix final review findings (D049): consent always needs the owner code, cookie scoped to approvals, truthful disconnect reporting with lock before revoke and a timeout, replay protection documented as per connection, refuse unmountable paths, drop Dependabot version PRs.
+- 驗證：Full image check, test:synthetic, launcher tests; new disconnect cases. Not re-reviewed.
+
 <!-- component-snapshot
 {
-  "src/mcp/approval-desk.ts": "2cb4fca83ba5b0cb91f8415772a8907e6e11b8e6271166159f4f930df2f3d170",
+  "src/mcp/approval-desk.ts": "b70dbad780fb67bc20d91ff48691f84c0132f01a5dd527e2a260b04d519196dc",
   "src/mcp/approval-probe.ts": "92f83265e3538d3e0cc6478e8292fd1f5d79de4bec09c650600fb92c17b5eb64",
   "src/mcp/index.ts": "cf85fe0aa2b3199b089baf7ec918611f9cc851de71c57b6ac8d503e208489e86",
   "src/mcp/private-http.ts": "eb7dced1a1187806722d0097f25cd27d1726bdc36bbaa1c0bc9f3328995c63e9",
   "src/mcp/public-http.ts": "b8768f85faca8d51092c75264faa0d6b90799b9e6bcf3c5a668d11f96985763e",
   "src/mcp/stdio-bridge.ts": "8a22a2dc841b9a60046114782b1205adaa233e418ab0c7297ac6cd379b513c07",
-  "src/mcp/SPEC.md": "33205ea85e364df8a42545111b2e609d05f2b5806846e4c3f0ace6f2462d8195"
+  "src/mcp/SPEC.md": "25202e0572ef8a7de332f25c862d9a68efbb8ec02a098f445f386f79ee43f870"
 }
 -->

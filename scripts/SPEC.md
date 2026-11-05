@@ -248,6 +248,16 @@ npm run check
 - 決策／原因／取捨：Cover a client file downloaded while the setup prompt waits.
 - 驗證：Launcher tests.
 
+### 2026-11-05
+
+- 決策／原因／取捨：Fix final review findings (D049): consent always needs the owner code, cookie scoped to approvals, truthful disconnect reporting with lock before revoke and a timeout, replay protection documented as per connection, refuse unmountable paths, drop Dependabot version PRs.
+- 驗證：Full image check, test:synthetic, launcher tests; new disconnect cases. Not re-reviewed.
+
+### 2026-11-05
+
+- 決策／原因／取捨：Re-record fingerprints without the Python cache produced by the launcher test.
+- 驗證：Docs check.
+
 <!-- component-snapshot
 {
   "scripts/check-components.mjs": "6ff190f454b12bf1406e6a5ac11b1ebe02f11031272438f5146f86231ccb1bcf",
@@ -268,6 +278,6 @@ npm run check
   "scripts/setup.test.mjs": "aae7d879b360cb1b13c93b60117272e079d10197fb1ee25b4f50756bd998bd18",
   "scripts/start-private-tunnel.test.mjs": "34be6062d43303c33cab0ae21d8b418fdc7b3554958453db6151ea0168dc0f35",
   "scripts/start-private-tunnel.zsh": "228719e49fb4c612405afc7e35decaccb3af3918fd71707e7817e616a32dd1a4",
-  "scripts/SPEC.md": "465292b433cc1d90591fd42ac186259503fac211ece0108e9e008c6e5d6d6870"
+  "scripts/SPEC.md": "2aac60ee40aa699165f6c0818f32892754a63b8895116f8848f2bb5e9332a495"
 }
 -->

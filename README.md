@@ -9,7 +9,7 @@ Let Claude manage your Google Tasks. Say what's on your mind, and it becomes tas
 > **Claude:** I'll add "Renew passport" for Tuesday and "Take a practice test" for this Saturday. OK?
 
 - **Your data stays yours.** It runs on your computer with your own Google client. There is no server of ours and no account to create.
-- **Tasks live only in Google.** The local database holds tokens and safety records, not your task content. The one exception is a write waiting for approval in strict mode, for up to 24 hours.
+- **Tasks live only in Google.** The local database holds tokens and safety records, not your task content. The one exception is a write waiting for approval in strict mode, cleared after 24 hours while the service runs, or at its next start.
 - **Careful with writes.** No delete tool, no silent retries after an unknown result, and it refuses to overwrite a task that changed since it was read.
 
 > **Early release.** Tested on macOS with OrbStack, using Claude Desktop and Claude Web. Docker Desktop, Linux and ChatGPT are not confirmed yet. Reports are welcome.
@@ -46,7 +46,7 @@ Add the optional planning skill for brain dumps, deadline planning and daily and
 - **Writes are your choice.** The setup asks, and the default is read-only. If you allow writes, Claude acts without asking each time, and a model misled by a task note or web page could change tasks. Overwritten text cannot be recovered. For per-write approval, see [strict mode](docs/CLAUDE_CONNECTION.md#how-a-write-works), which does not constrain agents with shell access such as Claude Code.
 - **Google access lasts 7 days in Testing.** That is [Google's rule](https://developers.google.com/identity/protocols/oauth2) for consent screens in Testing. Run `./setup.sh` again, or choose **Publish app** in the console.
 - **Dates only.** Google Tasks has no time or reminders through this API. Put anything time-critical in Calendar.
-- **Don't restore `.data` from an old backup.** It holds the records that prevent duplicate writes.
+- **Don't restore `.data` from an old backup.** It holds the records that prevent duplicate writes. They apply to one connection, so after reconnecting, check Google Tasks before retrying a write whose result was unknown.
 - **Removing tasks is manual.** Delete them in Google Tasks.
 
 ## Other clients

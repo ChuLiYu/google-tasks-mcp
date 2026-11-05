@@ -561,6 +561,11 @@ P3 進度須區分已通過的合成條件更新／stdio 核准原型，以及�
 - 決策／原因／取捨：Record the verified Claude Desktop step of the real install.
 - 驗證：Read the config after the owner's re-run; tools loaded after reopening.
 
+### 2026-11-05
+
+- 決策／原因／取捨：Fix final review findings (D049): consent always needs the owner code, cookie scoped to approvals, truthful disconnect reporting with lock before revoke and a timeout, replay protection documented as per connection, refuse unmountable paths, drop Dependabot version PRs.
+- 驗證：Full image check, test:synthetic, launcher tests; new disconnect cases. Not re-reviewed.
+
 <!-- component-snapshot
 {
   "docs/API_CONSTRAINTS.md": "7fc66675ca41b924c7cc8a8a807ed6d0df2860827cbbf9285015ed852091783f",
@@ -568,17 +573,17 @@ P3 進度須區分已通過的合成條件更新／stdio 核准原型，以及�
   "docs/CHATGPT_CONNECTION.md": "2c3f50a3ed1c81d780426d4fcd2524bee60fe101a9b2985b5f79add1a17fc137",
   "docs/CLAUDE_CONNECTION.md": "da899d618cccab1bff9994b987bcc25267c5add3ec7ac4f10a98a38157d2963d",
   "docs/CONTEXT_AUDIT.md": "d05045da00607c3a815da24bf8edab17a8b1447f1c7e28c2d6c02ec180c33389",
-  "docs/DECISIONS.md": "c23b19303d6b96b6672fe18dab58a95fadb0c14c46f23bb0fbada10c7eefc069",
+  "docs/DECISIONS.md": "b762bc4195dad6bbc928bf17d2fe45dc8fb3a3d5a39a23be62ecaf430c3f76a2",
   "docs/ENGINEERING_WORKFLOW.md": "b60f65ff454d3d81e6a9c6324594e5bdd724b8f5ef03cc78f12fc155c0d73f97",
   "docs/INDEX.md": "f07aec2c79528e56793ab55900926100197ab418ea1d5729ef9b72773aeb1b83",
-  "docs/LAUNCH_CHECKLIST.md": "9437c3a086385c16b73cac8505e2bfaba4ad0038cc6ce542ad38f1474ac12eb1",
+  "docs/LAUNCH_CHECKLIST.md": "cb0bbcaad19e7cbeeed3ae3dc26fc66c4dfdd88193e167c5b1dcca7d23a39335",
   "docs/PLANNING.md": "c082ee1c2a4fc7f9d2f36924f7175aff70122ebecaa9aff1a98c26e6e9947dc4",
   "docs/PLANNING.zh-TW.md": "0a82db5a5bb6477d98e642661ccef655af0e8c3ba4d93144682b3403c87d457a",
   "docs/PRD.md": "7d089aa7120bda6f2ad038f2cefc72e1ed53499f51d7be206224d81113f7b7c8",
-  "docs/RELEASE_PLAN.md": "7b7c5b3c0aabe0be3847d7a7982175de3c4931aaeb87d4fa40ce72e579519475",
+  "docs/RELEASE_PLAN.md": "ae33375d712d6cbd1f0a1540ce6c053d6ee041ec5609aa17c780b8e08c707de7",
   "docs/ROADMAP.md": "e6f20116c0062c36ceb80056a28858e6a1dc09672993b5178af9042dd827787f",
   "docs/TEST_PLAN.md": "280b02ed374fb4ad4961aa9e03050652ab3ae9b62f70c76907bf5850f8639aee",
   "docs/USER_TESTING.md": "e8c363c18565ab811ac4e61cb77d4efa3994677f332f06cd62df34e78fef5005",
-  "docs/SPEC.md": "fc20d541e6404e52320a2d78649026f3372e9ce033bc6674416537e9a84d82d9"
+  "docs/SPEC.md": "640663470d66d9b864fc4e3757a632ac37ec1737f08c6d63b1623601ffb585c3"
 }
 -->
