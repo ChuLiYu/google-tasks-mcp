@@ -21,6 +21,8 @@ Parent: [docs component](SPEC.md). Owner-run steps for the first public release.
 
 These are common practice, not measured for this project.
 
+Prepared drafts for items 1, 3, 4 and 6 are in the [launch kit](launch/DESIGN.md). Registry listing needs a packaging decision first; see the design note.
+
 1. **A 20-second demo GIF at the top of the README.** Use a real conversation on the test account.
 2. **Fast first success.** Keep watching where install reports get stuck.
 3. **Listings.** The official MCP Registry and community lists such as awesome-mcp-servers.

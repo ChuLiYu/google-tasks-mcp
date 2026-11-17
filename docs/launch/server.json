@@ -1,0 +1,42 @@
+{
+  "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
+  "name": "io.github.ChuLiYu/google-tasks-mcp",
+  "title": "Google Tasks MCP",
+  "description": "Self-hosted Google Tasks for Claude: read, create, update and complete tasks with safe writes.",
+  "version": "0.1.0",
+  "websiteUrl": "https://github.com/ChuLiYu/google-tasks-mcp",
+  "repository": {
+    "url": "https://github.com/ChuLiYu/google-tasks-mcp",
+    "source": "github"
+  },
+  "packages": [
+    {
+      "registryType": "oci",
+      "identifier": "ghcr.io/chuliyu/google-tasks-mcp:0.1.0",
+      "transport": {
+        "type": "stdio"
+      },
+      "runtimeArguments": [
+        {
+          "type": "named",
+          "name": "--mount",
+          "value": "type=bind,src={data_dir},dst=/data",
+          "variables": {
+            "data_dir": {
+              "description": "Absolute path to the .data folder created by ./setup.sh",
+              "format": "filepath",
+              "isRequired": true
+            }
+          }
+        }
+      ],
+      "environmentVariables": [
+        {
+          "name": "TASKS_DATA_DIR",
+          "description": "Data directory inside the container",
+          "value": "/data"
+        }
+      ]
+    }
+  ]
+}

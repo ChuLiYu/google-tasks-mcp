@@ -30,7 +30,7 @@ export function buildServer(service: TaskService, options: McpOptions = {}) {
   let pending=pendingByService.get(service);
   if(!pending) {pending=new Map();pendingByService.set(service,pending);}
   const continuations=pending;
-  const server=new McpServer({name:'google-tasks-mcp-local-preview',version:'0.1.0-dev'});
+  const server=new McpServer({name:'google-tasks-mcp',version:'0.1.0'});
   if(options.approvalProbe) registerApprovalProbe(server,service,options.demoRoundTrip===true);
   for (const name of Object.keys(schemas) as ToolName[]) {
     const readonly=readTools.has(name);

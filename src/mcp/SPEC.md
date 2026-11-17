@@ -133,14 +133,19 @@ Real writes default to `directWrites` (D041). With `localApproval` tools only pr
 - 決策／原因／取捨：Fix final review findings (D049): consent always needs the owner code, cookie scoped to approvals, truthful disconnect reporting with lock before revoke and a timeout, replay protection documented as per connection, refuse unmountable paths, drop Dependabot version PRs.
 - 驗證：Full image check, test:synthetic, launcher tests; new disconnect cases. Not re-reviewed.
 
+### 2026-11-17
+
+- 決策／原因／取捨：Launch prep: MCP server info is now google-tasks-mcp / 0.1.0 (was google-tasks-mcp-local-preview / 0.1.0-dev).
+- 驗證：Full image check: npm run check, 14 files, 178 tests passed.
+
 <!-- component-snapshot
 {
   "src/mcp/approval-desk.ts": "b70dbad780fb67bc20d91ff48691f84c0132f01a5dd527e2a260b04d519196dc",
   "src/mcp/approval-probe.ts": "92f83265e3538d3e0cc6478e8292fd1f5d79de4bec09c650600fb92c17b5eb64",
-  "src/mcp/index.ts": "cf85fe0aa2b3199b089baf7ec918611f9cc851de71c57b6ac8d503e208489e86",
+  "src/mcp/index.ts": "9bc4fd8de86de038de0a1f9afdb52a3d50bba243bbc21f3319deec8206a4d6c5",
   "src/mcp/private-http.ts": "eb7dced1a1187806722d0097f25cd27d1726bdc36bbaa1c0bc9f3328995c63e9",
   "src/mcp/public-http.ts": "b8768f85faca8d51092c75264faa0d6b90799b9e6bcf3c5a668d11f96985763e",
   "src/mcp/stdio-bridge.ts": "8a22a2dc841b9a60046114782b1205adaa233e418ab0c7297ac6cd379b513c07",
-  "src/mcp/SPEC.md": "25202e0572ef8a7de332f25c862d9a68efbb8ec02a098f445f386f79ee43f870"
+  "src/mcp/SPEC.md": "cb060b85a0fc93780409b83d62b770e217e72c435516131ace86ee2ba03b9c64"
 }
 -->
