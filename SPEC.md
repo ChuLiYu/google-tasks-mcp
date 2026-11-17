@@ -239,6 +239,11 @@ The owner-approved optional local `.env` holds only the readonly Tunnel runtime 
 - 決策／原因／取捨：Remove the dated owner authorization from the public AGENTS.md (D048).
 - 驗證：Full image check on this tree.
 
+### 2026-11-17
+
+- 決策／原因／取捨：Security: update transitive hono 4.13.14 -> 4.13.19 and @hono/node-server 2.1.5 -> 2.1.8 (lockfile only) to close 7 Dependabot alerts; no direct dependency changes.
+- 驗證：npm audit --omit=dev: 0 vulnerabilities; full image check: npm run check passed.
+
 <!-- component-snapshot
 {
   ".dockerignore": "f6506e7ecab6636760e7da81b35d1e5b7a644c4dfd632bb73bafce7f078bda62",
@@ -259,11 +264,11 @@ The owner-approved optional local `.env` holds only the readonly Tunnel runtime 
   "SECURITY.md": "c30c99054d3e51d1a0fd901d627b11e90d1bfc8897bf6654634e6f8d3d6ff830",
   "Start Google Tasks.command": "34c1d575504355b018cb7ec9973cfd307fa4ccdee1df4ebf5463c5a319265167",
   "components.json": "e96d0fa66d84f2a57d9e825f8da8160c7d8cd0cde10310e67a427a83f1ff9872",
-  "package-lock.json": "48f35e9b55601a5e2f78d716e83c8a9772edc944a50e4563428f4182b7cffd14",
+  "package-lock.json": "9977daa35202e01b89b19deae6623183e159d91a270161446d605cdf7e9dcbcc",
   "package.json": "3d86b84d5628753abb7d15daf6a3d2c590087773a7832a55ae1f2abfd468b257",
   "setup.sh": "509505cc516a13d26f2ad06eeb89f9e6b7f58753b57b390d1c3649bc4cca0f11",
   "tsconfig.json": "4ef2657319d7990ea442439c820b9a315a7741eeb57701bdf1b88d7ac5fb8296",
   "vitest.config.ts": "430ca3bbd088e694cc4564030645100fe55f65f86dcc121dce06842201b3b5c0",
-  "SPEC.md": "fb2e9108574afa01a38d452862a55978c97655c831b336d584cc107f25894eef"
+  "SPEC.md": "8e91d114dc0cfba195f4ef551f08cb88c9bf71f14046716cbe70e5ebbca8bf4b"
 }
 -->
